@@ -1,0 +1,103 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Student Management System</h1>
+      <p class="hero-subtitle">Manage courses, enrollments, and teachers efficiently</p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div class="stat-content">
+            <h3>{{ courseCount }}</h3>
+            <p>Courses Available</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-content">
+            <h3>{{ enrollmentCount }}</h3>
+            <p>Active Enrollments</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2 class="section-title">Manage Your Institution</h2>
+    <p class="section-subtitle">Everything you need in one place</p>
+    
+    <div class="features-grid">
+      <!-- Course Management -->
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <h3 class="feature-title">Course Management</h3>
+        <p class="feature-description">
+          Create, edit, and manage courses. Set credits, departments, and assign teachers.
+        </p>
+        <a routerLink="/courses" class="feature-link">Manage Courses →</a>
+      </div>
+
+      <!-- Enrollment System -->
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3 class="feature-title">Enrollment System</h3>
+        <p class="feature-description">
+          Enroll students in courses, track grades, and manage enrollment status.
+        </p>
+        <a routerLink="/enrollments" class="feature-link">Manage Enrollments →</a>
+      </div>
+
+      <!-- Teacher Directory -->
+      <div class="feature-card">
+        <div class="feature-icon">👨‍🏫</div>
+        <h3 class="feature-title">Teacher Directory</h3>
+        <p class="feature-description">
+          Manage teacher profiles, contact information, and department assignments.
+        </p>
+        <a routerLink="/teachers" class="feature-link">View Teachers →</a>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Quick Actions</h3>
+        <p class="feature-description">
+          Get started quickly with these common tasks.
+        </p>
+        <div class="quick-actions">
+          <a routerLink="/courses/new" class="quick-action-btn">+ New Course</a>
+          <a routerLink="/enrollments/new" class="quick-action-btn">+ New Enrollment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="getting-started">
+    <h2 class="section-title">Getting Started</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Add Courses</h3>
+        <p>Start by creating courses that will be offered</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Manage Teachers</h3>
+        <p>Add teachers who will instruct the courses</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Enroll Students</h3>
+        <p>Enroll students in their chosen courses</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Track Progress</h3>
+        <p>Monitor enrollments and update grades</p>
+      </div>
+    </div>
+  </section>
+</div>

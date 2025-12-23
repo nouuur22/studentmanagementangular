@@ -1,0 +1,18 @@
+<!-- src/app/app.component.html -->
+<nav class="navbar">
+  <div class="nav-container">
+    <h1 class="logo">Student Management System</h1>
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/courses" routerLinkActive="active">Courses</a>
+      <a routerLink="/enrollments" routerLinkActive="active">Enrollments</a>
+      <!-- ADD THIS STUDENTS LINK -->
+      <a routerLink="/students" routerLinkActive="active">Students</a>
+      <a routerLink="/teachers" routerLinkActive="active">Teachers</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <router-outlet />
+</main>

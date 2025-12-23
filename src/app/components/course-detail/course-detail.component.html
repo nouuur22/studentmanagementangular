@@ -1,0 +1,38 @@
+<div class="course-detail">
+  <h2>{{ course?.name }}</h2>
+
+  <div class="detail-card">
+    <div class="detail-item">
+      <span class="label">ID:</span>
+      <span class="value">{{ course?.id }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Description:</span>
+      <span class="value">{{ course?.description }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Credits:</span>
+      <span class="value">{{ course?.credits }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Department:</span>
+      <span class="value">{{ course?.department }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Teacher ID:</span>
+      <span class="value">{{ course?.teacher?.id || 'Not assigned' }}</span>
+    </div>
+  </div>
+
+  <!-- Action buttons in detail view -->
+  <div class="action-buttons">
+    <!-- Edit button that navigates to edit form -->
+    <button class="btn-edit" [routerLink]="['/courses/edit', course?.id]">
+      <i class="edit-icon"></i> Edit Course
+    </button>
+
+    <button class="btn-back" [routerLink]="['/courses']">
+      <i class="back-icon"></i> Back to List
+    </button>
+  </div>
+</div>

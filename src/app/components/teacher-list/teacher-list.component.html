@@ -1,0 +1,56 @@
+<!-- Create this file: src/app/components/teacher-list/teacher-list.component.html -->
+<div class="container">
+  <div class="header">
+    <h2>Teachers</h2>
+    <a routerLink="/teachers/new" class="btn btn-primary">
+      + Add New Teacher
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading teachers...
+  </div>
+
+  <div *ngIf="error" class="error alert alert-danger">
+    {{ error }}
+  </div>
+
+  <table *ngIf="!loading && teachers.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Department</th>
+        <th>Specialization</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teachers">
+        <td>{{ teacher.id }}</td>
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>{{ teacher.phoneNumber || 'N/A' }}</td>
+        <td>{{ teacher.department || 'N/A' }}</td>
+        <td>{{ teacher.specialization || 'N/A' }}</td>
+        <td>
+          <div class="action-buttons">
+           <a [routerLink]="['/teachers/edit', teacher.id]" class="btn-edit">Edit</a>
+            <!-- Delete button component -->
+            <app-delete-button
+              [buttonText]="'Delete'"
+              [itemName]="teacher.name"
+              (delete)="deleteTeacher(teacher.id!)">
+            </app-delete-button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && teachers.length === 0" class="no-data">
+    No teachers found. <a routerLink="/teachers/new">Add your first teacher</a>
+  </div>
+</div>

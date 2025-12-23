@@ -1,0 +1,114 @@
+<!-- src/app/components/enrollment-form/enrollment-form.component.html -->
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit Enrollment' : 'Add New Enrollment' }}</h2>
+
+  <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mb-3">
+      <label for="studentId">Student *</label>
+      <select
+        id="studentId"
+        formControlName="studentId"
+        class="form-control"
+        [class.is-invalid]="enrollmentForm.get('studentId')?.invalid && enrollmentForm.get('studentId')?.touched"
+        [disabled]="isEditMode">
+        <option value="">Select a student</option>
+        <option *ngFor="let student of students" [value]="student.id">
+          {{ student.name }} ({{ student.email }})
+        </option>
+      </select>
+      <div *ngIf="enrollmentForm.get('studentId')?.invalid && enrollmentForm.get('studentId')?.touched"
+           class="invalid-feedback">
+        Student is required
+      </div>
+      <small *ngIf="isEditMode" class="text-muted">
+        Student cannot be changed for existing enrollment
+      </small>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="courseId">Course *</label>
+      <select
+        id="courseId"
+        formControlName="courseId"
+        class="form-control"
+        [class.is-invalid]="enrollmentForm.get('courseId')?.invalid && enrollmentForm.get('courseId')?.touched"
+        [disabled]="isEditMode">
+        <option value="">Select a course</option>
+        <option *ngFor="let course of courses" [value]="course.id">
+          {{ course.name }} ({{ course.department || 'No Department' }})
+        </option>
+      </select>
+      <div *ngIf="enrollmentForm.get('courseId')?.invalid && enrollmentForm.get('courseId')?.touched"
+           class="invalid-feedback">
+        Course is required
+      </div>
+      <small *ngIf="isEditMode" class="text-muted">
+        Course cannot be changed for existing enrollment
+      </small>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="enrollmentDate">Enrollment Date *</label>
+      <input
+        type="date"
+        id="enrollmentDate"
+        formControlName="enrollmentDate"
+        class="form-control"
+        [class.is-invalid]="enrollmentForm.get('enrollmentDate')?.invalid && enrollmentForm.get('enrollmentDate')?.touched">
+      <div *ngIf="enrollmentForm.get('enrollmentDate')?.invalid && enrollmentForm.get('enrollmentDate')?.touched"
+           class="invalid-feedback">
+        Enrollment date is required
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="grade">Grade</label>
+      <select id="grade" formControlName="grade" class="form-control">
+        <option value="">No Grade</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="F">F</option>
+        <option value="W">W (Withdrawn)</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="status">Status *</label>
+      <select
+        id="status"
+        formControlName="status"
+        class="form-control"
+        [class.is-invalid]="enrollmentForm.get('status')?.invalid && enrollmentForm.get('status')?.touched">
+        <option value="ACTIVE">Active</option>
+        <option value="COMPLETED">Completed</option>
+        <option value="DROPPED">Dropped</option>
+      </select>
+      <div *ngIf="enrollmentForm.get('status')?.invalid && enrollmentForm.get('status')?.touched"
+           class="invalid-feedback">
+        Status is required
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <div class="d-flex gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="enrollmentForm.invalid || isLoading">
+        {{ isLoading ? 'Saving...' : (isEditMode ? 'Update Enrollment' : 'Create Enrollment') }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

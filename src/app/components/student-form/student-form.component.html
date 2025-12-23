@@ -1,0 +1,83 @@
+<!-- src/app/components/student-form/student-form.component.html -->
+<div class="container">
+  <div class="form-container">
+    <h2>{{ isEditMode ? 'Edit Student' : 'Add New Student' }}</h2>
+
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-control"
+          placeholder="Enter student name"
+        >
+        <div *ngIf="studentForm.get('name')?.invalid && studentForm.get('name')?.touched"
+             class="error-message">
+          Name is required
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="student@example.com"
+        >
+        <div *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched"
+             class="error-message">
+          Valid email is required
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          formControlName="phoneNumber"
+          class="form-control"
+          placeholder="(123) 456-7890"
+        >
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          formControlName="address"
+          class="form-control"
+          rows="3"
+          placeholder="Enter student address"
+        ></textarea>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn-submit"
+          [disabled]="studentForm.invalid || saving">
+          {{ saving ? 'Saving...' : (isEditMode ? 'Update Student' : 'Create Student') }}
+        </button>
+
+        <button
+          type="button"
+          class="btn-cancel"
+          (click)="goBack()"
+          [disabled]="saving">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
