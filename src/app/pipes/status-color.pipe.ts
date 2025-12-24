@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'statusColor',
-  standalone: true
+  standalone: true // Can be used without NgModule
 })
 export class StatusColorPipe implements PipeTransform {
   transform(status: string): string {
