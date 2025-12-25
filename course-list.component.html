@@ -1,0 +1,64 @@
+<div class="course-list-container">
+  <!-- Header with title and Add button -->
+  <div class="header">
+    <h2>Courses</h2>
+    <button class="add-btn" [routerLink]="['/courses/new']">
+      <span class="btn-icon">+</span> Add Course
+    </button>
+  </div>
+
+  <!-- Courses table -->
+  <div class="table-container">
+    <table class="course-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Credits</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses">
+          <td>{{ course.id }}</td>
+          <td>{{ course.name }}</td>
+          <td class="description-cell">{{ course.description || 'No description' }}</td>
+          <td>{{ course.credits }}</td>
+          <td>{{ course.department || 'N/A' }}</td>
+          <td>
+            <div class="actions">
+              <button class="btn edit-btn" [routerLink]="['/courses/edit', course.id]">
+                Edit
+              </button>
+              <button class="btn view-btn" [routerLink]="['/courses', course.id]">
+                View
+              </button>
+              <!-- Assuming you have a delete button component -->
+              <app-delete-button
+                *ngIf="course.id"
+                [itemName]="course.name"
+                (delete)="deleteCourse(course.id)">
+              </app-delete-button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Empty state -->
+        <tr *ngIf="courses.length === 0">
+          <td colspan="6" class="empty-state">
+            <div class="empty-content">
+              <div class="empty-icon">📚</div>
+              <h3>No courses available</h3>
+              <p>Start by adding your first course</p>
+              <button class="add-btn" [routerLink]="['/courses/new']">
+                <span class="btn-icon">+</span> Add First Course
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
